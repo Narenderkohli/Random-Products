@@ -1,0 +1,22 @@
+<div id="showcase">
+{% if section.settings.collection.products.size > 0 %}
+<!-- {% capture index %}
+  {{ 'now' | date: '%S' | times: section.settings.collection.products.size | divided_by: 60 }}
+  {% endcapture %} -->
+  {%- for i in (1..4) -%}
+ {% assign min = 1  %}
+{% assign max = section.settings.collection.products.size %}
+{% assign diff = max | minus: min %}
+{% assign randomNumber = "now" | date: "%N" | modulo: diff | plus: min %}
+<!--   {{ randomNumber }} -->
+  <div class="pdn" size="{{ section.settings.collection.products.size }}" index="{{ index }}">
+  {% assign product = section.settings.collection.products[randomNumber]  %}
+  <div class="random">
+<img srcset="{{ product.featured_media | img_url:'200x'}}">
+ <p> {{ product.title }}</p> 
+  </div>
+  </div>
+ {%- endfor -%}
+{% endif %}
+</div> 
+
